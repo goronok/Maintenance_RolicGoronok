@@ -39,9 +39,8 @@ namespace Maintenance_RolicGoronok
         // При нажатии добавить владельца
         private void addOwner_Click(object sender, RoutedEventArgs e)
         {
-           AddNewClient newOwner =  new AddNewClient();
-           newOwner.Title = "Добавить нового владельца";
-           newOwner.ShowDialog();
+            new AddNewOwner().ShowDialog();
+
             // Обновляем персоны в comboBox owner
             owner.ItemsSource = dc.Owners.Select(p => p.Surname + " " + p.Name[0] + "." + p.Patronymic[0]);
         }

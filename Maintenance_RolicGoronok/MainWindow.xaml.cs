@@ -39,8 +39,6 @@ namespace Maintenance_RolicGoronok
             // Создаем и заполняем базу и таблицы
             CreateAndInsertTable createInsertTable = new CreateAndInsertTable();
             createInsertTable.StartConnection();
-
-            
         }//MainWindow_Loaded
 
         // При нажатии на кнопку закрыть вкладку
@@ -92,7 +90,7 @@ namespace Maintenance_RolicGoronok
                 case "Неисправность": frame.NavigationService.Navigate(new Uri("Pages/MalfunctionsPage.xaml", UriKind.Relative)); break;
                 case "Рабочий": frame.NavigationService.Navigate(new Uri("Pages/FourthQuery.xaml", UriKind.Relative)); break;
                 case "Неисправности": frame.NavigationService.Navigate(new Uri("Pages/FifthPage.xaml", UriKind.Relative)); break;
-                case "Распространенная": frame.NavigationService.Navigate(new Uri("SixthPage.xaml", UriKind.Relative)); break;
+                case "Распространенная": frame.NavigationService.Navigate(new Uri("Pages/SixthPage.xaml", UriKind.Relative)); break;
             }
             
             tabDynamic.DataContext = null;

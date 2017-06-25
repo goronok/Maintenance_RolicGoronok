@@ -33,9 +33,9 @@ namespace Maintenance_RolicGoronok
     partial void InsertAppeal(Appeal instance);
     partial void UpdateAppeal(Appeal instance);
     partial void DeleteAppeal(Appeal instance);
-    partial void InsertWork(Work instance);
-    partial void UpdateWork(Work instance);
-    partial void DeleteWork(Work instance);
+    partial void InsertSpecialitie(Specialitie instance);
+    partial void UpdateSpecialitie(Specialitie instance);
+    partial void DeleteSpecialitie(Specialitie instance);
     partial void InsertAttire(Attire instance);
     partial void UpdateAttire(Attire instance);
     partial void DeleteAttire(Attire instance);
@@ -66,9 +66,9 @@ namespace Maintenance_RolicGoronok
     partial void InsertServicesInfo(ServicesInfo instance);
     partial void UpdateServicesInfo(ServicesInfo instance);
     partial void DeleteServicesInfo(ServicesInfo instance);
-    partial void InsertSpecialitie(Specialitie instance);
-    partial void UpdateSpecialitie(Specialitie instance);
-    partial void DeleteSpecialitie(Specialitie instance);
+    partial void InsertWork(Work instance);
+    partial void UpdateWork(Work instance);
+    partial void DeleteWork(Work instance);
     #endregion
 		
 		public MaintenanceDataContext() : 
@@ -109,11 +109,11 @@ namespace Maintenance_RolicGoronok
 			}
 		}
 		
-		public System.Data.Linq.Table<Work> Works
+		public System.Data.Linq.Table<Specialitie> Specialities
 		{
 			get
 			{
-				return this.GetTable<Work>();
+				return this.GetTable<Specialitie>();
 			}
 		}
 		
@@ -197,11 +197,11 @@ namespace Maintenance_RolicGoronok
 			}
 		}
 		
-		public System.Data.Linq.Table<Specialitie> Specialities
+		public System.Data.Linq.Table<Work> Works
 		{
 			get
 			{
-				return this.GetTable<Specialitie>();
+				return this.GetTable<Work>();
 			}
 		}
 	}
@@ -450,21 +450,17 @@ namespace Maintenance_RolicGoronok
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Work]")]
-	public partial class Work : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Specialitie")]
+	public partial class Specialitie : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
 		
-		private int _BidId;
+		private string _Name;
 		
-		private int _AttireId;
-		
-		private EntityRef<Attire> _Attire;
-		
-		private EntityRef<Bid> _Bid;
+		private EntitySet<Employee> _Employees;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -472,16 +468,13 @@ namespace Maintenance_RolicGoronok
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnBidIdChanging(int value);
-    partial void OnBidIdChanged();
-    partial void OnAttireIdChanging(int value);
-    partial void OnAttireIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
     #endregion
 		
-		public Work()
+		public Specialitie()
 		{
-			this._Attire = default(EntityRef<Attire>);
-			this._Bid = default(EntityRef<Bid>);
+			this._Employees = new EntitySet<Employee>(new Action<Employee>(this.attach_Employees), new Action<Employee>(this.detach_Employees));
 			OnCreated();
 		}
 		
@@ -505,119 +498,36 @@ namespace Maintenance_RolicGoronok
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BidId", DbType="Int NOT NULL")]
-		public int BidId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
 		{
 			get
 			{
-				return this._BidId;
+				return this._Name;
 			}
 			set
 			{
-				if ((this._BidId != value))
+				if ((this._Name != value))
 				{
-					if (this._Bid.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBidIdChanging(value);
+					this.OnNameChanging(value);
 					this.SendPropertyChanging();
-					this._BidId = value;
-					this.SendPropertyChanged("BidId");
-					this.OnBidIdChanged();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AttireId", DbType="Int NOT NULL")]
-		public int AttireId
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Specialitie_Employee", Storage="_Employees", ThisKey="Id", OtherKey="SpecialityId")]
+		public EntitySet<Employee> Employees
 		{
 			get
 			{
-				return this._AttireId;
+				return this._Employees;
 			}
 			set
 			{
-				if ((this._AttireId != value))
-				{
-					if (this._Attire.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAttireIdChanging(value);
-					this.SendPropertyChanging();
-					this._AttireId = value;
-					this.SendPropertyChanged("AttireId");
-					this.OnAttireIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attire_Work", Storage="_Attire", ThisKey="AttireId", OtherKey="Id", IsForeignKey=true)]
-		public Attire Attire
-		{
-			get
-			{
-				return this._Attire.Entity;
-			}
-			set
-			{
-				Attire previousValue = this._Attire.Entity;
-				if (((previousValue != value) 
-							|| (this._Attire.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Attire.Entity = null;
-						previousValue.Works.Remove(this);
-					}
-					this._Attire.Entity = value;
-					if ((value != null))
-					{
-						value.Works.Add(this);
-						this._AttireId = value.Id;
-					}
-					else
-					{
-						this._AttireId = default(int);
-					}
-					this.SendPropertyChanged("Attire");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bid_Work", Storage="_Bid", ThisKey="BidId", OtherKey="Id", IsForeignKey=true)]
-		public Bid Bid
-		{
-			get
-			{
-				return this._Bid.Entity;
-			}
-			set
-			{
-				Bid previousValue = this._Bid.Entity;
-				if (((previousValue != value) 
-							|| (this._Bid.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Bid.Entity = null;
-						previousValue.Works.Remove(this);
-					}
-					this._Bid.Entity = value;
-					if ((value != null))
-					{
-						value.Works.Add(this);
-						this._BidId = value.Id;
-					}
-					else
-					{
-						this._BidId = default(int);
-					}
-					this.SendPropertyChanged("Bid");
-				}
+				this._Employees.Assign(value);
 			}
 		}
 		
@@ -639,6 +549,18 @@ namespace Maintenance_RolicGoronok
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Employees(Employee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Specialitie = this;
+		}
+		
+		private void detach_Employees(Employee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Specialitie = null;
 		}
 	}
 	
@@ -1556,6 +1478,10 @@ namespace Maintenance_RolicGoronok
 		
 		private string _Passport;
 		
+		private string _License;
+		
+		private string _Phone;
+		
 		private EntitySet<Appeal> _Appeals;
 		
     #region Extensibility Method Definitions
@@ -1576,6 +1502,10 @@ namespace Maintenance_RolicGoronok
     partial void OnAddressChanged();
     partial void OnPassportChanging(string value);
     partial void OnPassportChanged();
+    partial void OnLicenseChanging(string value);
+    partial void OnLicenseChanged();
+    partial void OnPhoneChanging(string value);
+    partial void OnPhoneChanged();
     #endregion
 		
 		public Client()
@@ -1720,6 +1650,46 @@ namespace Maintenance_RolicGoronok
 					this._Passport = value;
 					this.SendPropertyChanged("Passport");
 					this.OnPassportChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_License", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string License
+		{
+			get
+			{
+				return this._License;
+			}
+			set
+			{
+				if ((this._License != value))
+				{
+					this.OnLicenseChanging(value);
+					this.SendPropertyChanging();
+					this._License = value;
+					this.SendPropertyChanged("License");
+					this.OnLicenseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(15)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this.OnPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._Phone = value;
+					this.SendPropertyChanged("Phone");
+					this.OnPhoneChanged();
 				}
 			}
 		}
@@ -2662,17 +2632,21 @@ namespace Maintenance_RolicGoronok
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Specialitie")]
-	public partial class Specialitie : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Work]")]
+	public partial class Work : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private int _Id;
 		
-		private string _Name;
+		private int _BidId;
 		
-		private EntitySet<Employee> _Employees;
+		private int _AttireId;
+		
+		private EntityRef<Attire> _Attire;
+		
+		private EntityRef<Bid> _Bid;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2680,13 +2654,16 @@ namespace Maintenance_RolicGoronok
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
+    partial void OnBidIdChanging(int value);
+    partial void OnBidIdChanged();
+    partial void OnAttireIdChanging(int value);
+    partial void OnAttireIdChanged();
     #endregion
 		
-		public Specialitie()
+		public Work()
 		{
-			this._Employees = new EntitySet<Employee>(new Action<Employee>(this.attach_Employees), new Action<Employee>(this.detach_Employees));
+			this._Attire = default(EntityRef<Attire>);
+			this._Bid = default(EntityRef<Bid>);
 			OnCreated();
 		}
 		
@@ -2710,36 +2687,119 @@ namespace Maintenance_RolicGoronok
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BidId", DbType="Int NOT NULL")]
+		public int BidId
 		{
 			get
 			{
-				return this._Name;
+				return this._BidId;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._BidId != value))
 				{
-					this.OnNameChanging(value);
+					if (this._Bid.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBidIdChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
+					this._BidId = value;
+					this.SendPropertyChanged("BidId");
+					this.OnBidIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Specialitie_Employee", Storage="_Employees", ThisKey="Id", OtherKey="SpecialityId")]
-		public EntitySet<Employee> Employees
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AttireId", DbType="Int NOT NULL")]
+		public int AttireId
 		{
 			get
 			{
-				return this._Employees;
+				return this._AttireId;
 			}
 			set
 			{
-				this._Employees.Assign(value);
+				if ((this._AttireId != value))
+				{
+					if (this._Attire.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAttireIdChanging(value);
+					this.SendPropertyChanging();
+					this._AttireId = value;
+					this.SendPropertyChanged("AttireId");
+					this.OnAttireIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attire_Work", Storage="_Attire", ThisKey="AttireId", OtherKey="Id", IsForeignKey=true)]
+		public Attire Attire
+		{
+			get
+			{
+				return this._Attire.Entity;
+			}
+			set
+			{
+				Attire previousValue = this._Attire.Entity;
+				if (((previousValue != value) 
+							|| (this._Attire.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Attire.Entity = null;
+						previousValue.Works.Remove(this);
+					}
+					this._Attire.Entity = value;
+					if ((value != null))
+					{
+						value.Works.Add(this);
+						this._AttireId = value.Id;
+					}
+					else
+					{
+						this._AttireId = default(int);
+					}
+					this.SendPropertyChanged("Attire");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Bid_Work", Storage="_Bid", ThisKey="BidId", OtherKey="Id", IsForeignKey=true)]
+		public Bid Bid
+		{
+			get
+			{
+				return this._Bid.Entity;
+			}
+			set
+			{
+				Bid previousValue = this._Bid.Entity;
+				if (((previousValue != value) 
+							|| (this._Bid.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Bid.Entity = null;
+						previousValue.Works.Remove(this);
+					}
+					this._Bid.Entity = value;
+					if ((value != null))
+					{
+						value.Works.Add(this);
+						this._BidId = value.Id;
+					}
+					else
+					{
+						this._BidId = default(int);
+					}
+					this.SendPropertyChanged("Bid");
+				}
 			}
 		}
 		
@@ -2761,18 +2821,6 @@ namespace Maintenance_RolicGoronok
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Employees(Employee entity)
-		{
-			this.SendPropertyChanging();
-			entity.Specialitie = this;
-		}
-		
-		private void detach_Employees(Employee entity)
-		{
-			this.SendPropertyChanging();
-			entity.Specialitie = null;
 		}
 	}
 }

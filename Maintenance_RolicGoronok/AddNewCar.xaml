@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Maintenance_RolicGoronok"
         mc:Ignorable="d"
-        Title="Новое авто" Height="260" Width="450" Background="WhiteSmoke" WindowStartupLocation="CenterScreen">
+        Title="Новое авто" Height="250" Width="440" Background="WhiteSmoke" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -35,8 +35,9 @@
         <TextBox x:Name="color" Style="{DynamicResource textBox}" Grid.Column="1" Grid.Row="3"/>
         <ComboBox x:Name="owner" Height="25" Width="150" FontSize="15" Grid.Column="1" Grid.Row="4" />
 
-        <StackPanel  Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal" >
-            <Button x:Name="add"  Margin="120 0 25 0" Content="Добавить" Style="{DynamicResource Button}" Click="add_Click" />
+        <StackPanel  Grid.Row="7" Grid.ColumnSpan="3" Orientation="Horizontal" >
+            <Button x:Name="add"  Margin="30 0 0 0" Content="Добавить"  Style="{DynamicResource Button}" Click="add_Click" />
+            <Button x:Name="cancel" Margin="50 0 0 0" Content="Отмена" Style="{DynamicResource Button}" IsCancel="True"/>
         </StackPanel>
 
         <Button Name="addModel" Height="30" Width="70" Grid.Column="2" Click="addModel_Click" Content="Добавить"/>

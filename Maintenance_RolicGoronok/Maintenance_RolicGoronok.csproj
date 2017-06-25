@@ -56,16 +56,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Garbs.cs" />
     <Compile Include="Window\AddModel.xaml.cs">
       <DependentUpon>AddModel.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddNewCar.xaml.cs">
       <DependentUpon>AddNewCar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddNewClient.xaml.cs">
+    <Compile Include="Window\AddNewClient.xaml.cs">
       <DependentUpon>AddNewClient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddNewOwner.xaml.cs">
+    <Compile Include="Window\AddNewOwner.xaml.cs">
       <DependentUpon>AddNewOwner.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\FifthPage.xaml.cs">
@@ -83,7 +84,7 @@
     <Compile Include="Pages\SecondQuery.xaml.cs">
       <DependentUpon>SecondQuery.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SixthPage.xaml.cs">
+    <Compile Include="Pages\SixthPage.xaml.cs">
       <DependentUpon>SixthPage.xaml</DependentUpon>
     </Compile>
     <Page Include="Window\AddModel.xaml">
@@ -94,11 +95,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddNewClient.xaml">
+    <Page Include="Window\AddNewClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddNewOwner.xaml">
+    <Page Include="Window\AddNewOwner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,7 +148,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SixthPage.xaml">
+    <Page Include="Pages\SixthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,9 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Image\add.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\close.gif" />
