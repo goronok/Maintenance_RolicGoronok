@@ -1,0 +1,74 @@
+﻿<Window x:Class="Maintenance_RolicGoronok.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Maintenance_RolicGoronok"
+        mc:Ignorable="d"
+        Title="Техобслуживание" Height="350" Width="1000" Style="{DynamicResource window}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <!--Меню-->
+        <Menu Grid.Row="0" Style="{DynamicResource Menu}">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход" Name="exit"/>
+            </MenuItem>
+            <MenuItem Header="Запросы" Margin="15 0 0 0">
+            </MenuItem>
+
+            <MenuItem Header="О программе" Margin="15 0 0 0" x:Name="About"/>
+        </Menu>
+
+
+        <ToolBar Grid.Row="1" >
+            <Button ToolTip="Фамилия, имя, отчество и адрес владельца автомобиля с данным номером государственной регистрации" 
+                       Content="Владелец" Width="100" Height="30" Tag="Владелец" Click="queryButton_click"/>
+
+
+            <Button ToolTip="Марка и год выпуска автомобиля данного владельца" 
+                    Margin="5 0 0 0" Content="Автомобиль" Width="100" Tag="Автомобиль" Height="30" Click="queryButton_click"/>
+            
+            <Button ToolTip="Заявка" 
+                    Margin="5 0 0 0" Content="Заявка" Width="100" Tag="Заявка" Height="30" Click="queryButton_click"/>
+            
+            <Button ToolTip="Неисправность" 
+                    Margin="5 0 0 0" Content="Неисправность" Width="120" Tag="Неисправность" Height="30" Click="queryButton_click"/>
+            
+            <Button ToolTip="Рабочий" 
+                    Margin="5 0 0 0" Content="Рабочий" Width="120" Tag="Рабочий" Height="30" Click="queryButton_click"/>
+            
+            <Button ToolTip="Неисправности" 
+                    Margin="5 0 0 0" Content="Неисправности" Width="120" Tag="Неисправности" Height="30" Click="queryButton_click"/>
+
+            <Button ToolTip="Распространенная" 
+                    Margin="5 0 0 0" Content="Распространенная" Width="145" Tag="Распространенная" Height="30" Click="queryButton_click"/>
+
+        </ToolBar>
+        
+
+        <TabControl Name="tabDynamic" ItemsSource="{Binding}"  Grid.Row="2" >
+            <TabControl.Resources>
+                <DataTemplate x:Key="TabHeader" DataType="TabItem">
+                    <DockPanel>
+                        <Button Name="btnDelete" 
+                                DockPanel.Dock="Right" 
+                                Margin="5,0,0,0" 
+                                Click="Close_Click" 
+                                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem}}, Path=Name}">
+                            <Image Source="Image/close.gif" Height="15" Width="15"/>
+                        </Button>
+                        <!--Заголовок-->
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=TabItem }, Path=Header}" />
+                    </DockPanel>
+                </DataTemplate>
+            </TabControl.Resources>
+        </TabControl>
+
+
+    </Grid>
+</Window>

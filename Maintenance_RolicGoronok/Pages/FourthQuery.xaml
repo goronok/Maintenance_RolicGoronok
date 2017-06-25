@@ -1,0 +1,36 @@
+﻿<Page x:Class="Maintenance_RolicGoronok.FourthQuery"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1100"
+	Title="FourthQuery">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Клиент: " FontSize="18" Width="80"/>
+            <ComboBox x:Name="client" Style="{DynamicResource ComboBox}" SelectionChanged="client_SelectionChanged"/>
+            
+            
+            <Label Content="Номер авто: " FontSize="18" Width="150"/>
+            <ComboBox x:Name="car" Style="{DynamicResource ComboBox}" SelectionChanged="car_SelectionChanged"/>
+            
+            <Label Content="Неисправность: " FontSize="18" Width="150"/>
+            <ComboBox x:Name="malfunction" Style="{DynamicResource ComboBox}" Width="350" SelectionChanged="car_SelectionChanged"/>
+
+            <Button x:Name="do" Margin="10 0 0 0" Content="Выполнить" Style="{DynamicResource Button}"  Click="do_Click"/>
+            
+        </StackPanel>
+        <DataGrid x:Name="dg" Grid.Row="1" Style="{DynamicResource DataGridStyle}" />
+
+        <TextBox x:Name="info" Style="{DynamicResource TextBoxHeader}" Grid.Row="2"/>
+    </Grid>
+</Page>

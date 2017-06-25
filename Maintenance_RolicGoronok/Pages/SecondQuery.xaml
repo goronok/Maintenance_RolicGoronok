@@ -1,0 +1,39 @@
+﻿<Page x:Class="Maintenance_RolicGoronok.SecondQuery"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Maintenance_RolicGoronok"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="600"
+      Title="SecondQuery">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Введите фамилия владельца: " FontSize="18" Width="270"/>
+            <TextBox x:Name="personSurname" Width="150" Height="30"/>
+            <Button x:Name="do" Margin="10 0 0 0" Content="Выполнить" Style="{DynamicResource Button}" Click="do_Click"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ListView Style="{DynamicResource listView}" Name="listOwner" SelectionChanged="listOwner_SelectionChanged"/>
+            <DataGrid x:Name="dg" Grid.Column="2" Style="{DynamicResource DataGridStyle}" />
+
+        </Grid>
+
+      
+        <TextBox x:Name="info" Style="{DynamicResource TextBoxHeader}" Grid.Row="3"/>
+
+    </Grid>
+</Page>

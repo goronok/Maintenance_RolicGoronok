@@ -1,0 +1,98 @@
+﻿<Page x:Class="Maintenance_RolicGoronok.BidClient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Maintenance_RolicGoronok"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1200"
+      Title="Bid" Background="{DynamicResource BW}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="690" />
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <!--Grid Клиента-->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Label Style="{DynamicResource LabelSecond}" FontWeight="ExtraBold"  Foreground="White" Content="Клиент" FontSize="20" />
+                <ComboBox x:Name="client" Height="25" Width="150" FontSize="15" Grid.Column="1" SelectionChanged="client_SelectionChanged"/>
+                <Button x:Name="addClient" Content="Новый" Style="{DynamicResource Button}" Width="80" Grid.Column="2" Click="addClient_Click"/>
+            </Grid>
+
+            <GroupBox   Header="Информация о клиенте" FontSize="16" Foreground="Wheat" Grid.Row="1" FontWeight="ExtraBold">
+                <DataGrid x:Name="dgClient" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            </GroupBox>
+        </Grid>
+
+
+        <!--Grid Авто-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="90"/>
+                </Grid.ColumnDefinitions>
+                <Label Style="{DynamicResource LabelSecond}" Foreground="White" Content="Авто (по номеру)" FontWeight="ExtraBold" FontSize="18" Grid.Row="1"/>
+                <ComboBox x:Name="avto" Height="25" Width="150" FontSize="15" Grid.Column="1" Grid.Row="1" SelectionChanged="avto_SelectionChanged"/>
+                <Button x:Name="addCar" Content="Новый" Style="{DynamicResource Button}" Width="80" Grid.Column="2" Grid.Row="1" Click="addCar_Click"/>
+            </Grid>
+
+            <GroupBox Header="Информация об автомобиле" Foreground="Wheat"  Grid.Row="1" FontSize="16" FontWeight="ExtraBold">
+                <DataGrid x:Name="dgAvto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            </GroupBox>
+        </Grid>
+
+        <!--DataGrid Неисправности (возникли проблемы с скролом datagrid из-за checkbox по этому обвернули внешним ScrollViewer)-->
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1">
+            <DataGrid Height="auto" Width="auto" Style="{DynamicResource DataGridStyle}" Grid.Row="1" RowEditEnding="dgMalfun_RowEditEnding" x:Name="dgMalfun">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn x:Name="selectMalfun"  Header="Выбор"       Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <!--DataGrid Работники (возникли проблемы с скролом datagrid из-за checkbox по этому обвернули внешним ScrollViewer)-->
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1" Grid.Column="1">
+            <DataGrid Height="auto" Style="{DynamicResource DataGridStyle}" x:Name="dgEmp" RowEditEnding="dg_RowEditEnding" Grid.Column="1" Grid.Row="1">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn x:Name="selectEmp"  Header="Выбор"       Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <Label Style="{DynamicResource LabelSecond}"  Content="Поставлен на ремонт " FontSize="18" />
+            <DatePicker x:Name="dateFrom" Width="150" Height="25" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+            <Label Style="{DynamicResource LabelSecond}"  Content="Поставлен на ремонт " FontSize="18" />
+            <DatePicker x:Name="dateTo" Width="150" Height="25" />
+        </StackPanel>
+    </Grid>
+</Page>
