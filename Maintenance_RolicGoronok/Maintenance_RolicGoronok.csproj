@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddModel.xaml.cs">
+    <Compile Include="Window\AddModel.xaml.cs">
       <DependentUpon>AddModel.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddNewCar.xaml.cs">
@@ -86,7 +86,7 @@
     <Compile Include="SixthPage.xaml.cs">
       <DependentUpon>SixthPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddModel.xaml">
+    <Page Include="Window\AddModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

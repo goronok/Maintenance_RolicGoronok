@@ -5,22 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Maintenance_RolicGoronok"
         mc:Ignorable="d"
-        Title="Новое авто" Height="225" Width="385" Background="WhiteSmoke" WindowStartupLocation="CenterScreen">
+        Title="Новое авто" Height="260" Width="450" Background="WhiteSmoke" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
 
         </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="170" />
             <ColumnDefinition Width="160"/>
-            <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="80"/>
         </Grid.ColumnDefinitions>
 
         <Label Style="{DynamicResource LabelSecond}" Content="Модель" FontSize="20" />
@@ -39,12 +39,9 @@
             <Button x:Name="add"  Margin="120 0 25 0" Content="Добавить" Style="{DynamicResource Button}" Click="add_Click" />
         </StackPanel>
 
-        <Button Name="addMarca" Height="30" Width="35" Grid.Column="2" Click="addMarca_Click">
-            <Image Source="Image/add.png" Height="30" Width="23" />
-        </Button>
+        <Button Name="addModel" Height="30" Width="70" Grid.Column="2" Click="addModel_Click" Content="Добавить"/>
 
-        <Button Name="addOwner" Height="30" Width="35" Grid.Column="2" Grid.Row="4" Click="addOwner_Click" >
-            <Image Source="Image/add.png" Height="30" Width="23"/>
-        </Button>
+        <Button Name="addOwner" Height="30" Width="70" Grid.Column="2" Grid.Row="4" Content="Добавить" Click="addOwner_Click" />
+
     </Grid>
 </Window>

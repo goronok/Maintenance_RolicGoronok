@@ -35,15 +35,7 @@ namespace Maintenance_RolicGoronok
             owner.ItemsSource = dc.Owners.Select(p => p.Surname + " " + p.Name[0] + "." + p.Patronymic[0]);
         }
 
-        private void add_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void addMarca_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+     
         // При нажатии добавить владельца
         private void addOwner_Click(object sender, RoutedEventArgs e)
         {
@@ -52,6 +44,18 @@ namespace Maintenance_RolicGoronok
            newOwner.ShowDialog();
             // Обновляем персоны в comboBox owner
             owner.ItemsSource = dc.Owners.Select(p => p.Surname + " " + p.Name[0] + "." + p.Patronymic[0]);
+        }
+
+        private void addModel_Click(object sender, RoutedEventArgs e)
+        {
+            new AddModel().ShowDialog();
+            // Все модели в comboBox model
+            model.ItemsSource = dc.Models.Select(m => m.Name);
+        }
+
+        private void add_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
