@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Maintenance_RolicGoronok"
         mc:Ignorable="d"
-        Title="Техобслуживание" Height="350" Width="1000" Style="{DynamicResource window}">
+        Title="Техобслуживание" Height="350" Width="1100" Style="{DynamicResource window}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -19,6 +19,8 @@
                 <MenuItem Header="Выход" Name="exit"/>
             </MenuItem>
             <MenuItem Header="Запросы" Margin="15 0 0 0">
+                <MenuItem Header="Клиент" Name="editClient"/>
+                <MenuItem Header="Новый работник" Name="newEmp"/>
             </MenuItem>
 
             <MenuItem Header="О программе" Margin="15 0 0 0" x:Name="About"/>
@@ -35,7 +37,10 @@
             
             <Button ToolTip="Заявка" 
                     Margin="5 0 0 0" Content="Заявка" Width="100" Tag="Заявка" Height="30" Click="queryButton_click"/>
-            
+
+            <Button ToolTip="Заявки" 
+                    Margin="5 0 0 0" Content="Все заявки" Width="100" Tag="Заявки" Height="30" Click="queryButton_click"/>
+
             <Button ToolTip="Неисправность" 
                     Margin="5 0 0 0" Content="Неисправность" Width="120" Tag="Неисправность" Height="30" Click="queryButton_click"/>
             

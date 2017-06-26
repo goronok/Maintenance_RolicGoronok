@@ -56,11 +56,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AllBid.xaml.cs">
+      <DependentUpon>AllBid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window\AddEmployee.xaml.cs">
+      <DependentUpon>AddEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window\EditClient.xaml.cs">
+      <DependentUpon>EditClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Garbs.cs" />
     <Compile Include="Window\AddModel.xaml.cs">
       <DependentUpon>AddModel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddNewCar.xaml.cs">
+    <Compile Include="Window\AddNewCar.xaml.cs">
       <DependentUpon>AddNewCar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Window\AddNewClient.xaml.cs">
@@ -87,11 +96,23 @@
     <Compile Include="Pages\SixthPage.xaml.cs">
       <DependentUpon>SixthPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="AllBid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\AddEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\EditClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window\AddModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddNewCar.xaml">
+    <Page Include="Window\AddNewCar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

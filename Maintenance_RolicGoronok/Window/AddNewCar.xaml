@@ -1,0 +1,48 @@
+﻿<Window x:Class="Maintenance_RolicGoronok.AddNewCar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Maintenance_RolicGoronok"
+        mc:Ignorable="d"
+        Title="Новое авто" Height="250" Width="440" Background="WhiteSmoke" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170" />
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="80"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Style="{DynamicResource LabelSecond}" Content="Модель" FontSize="20" />
+        <Label Style="{DynamicResource LabelSecond}" Content="Год выпуска" FontSize="20" Grid.Row="1"/>
+        <Label Style="{DynamicResource LabelSecond}" Content="Гос. Номер" FontSize="20" Grid.Row="2"/>
+        <Label Style="{DynamicResource LabelSecond}" Content="Цвет" FontSize="20" Grid.Row="3"/>
+        <Label Style="{DynamicResource LabelSecond}" Content="Владелец" FontSize="20" Grid.Row="4"/>
+
+        <ComboBox x:Name="model" Height="25" Width="150" FontSize="15" Grid.Column="1" />
+        <DatePicker x:Name="date" Width="150" Height="25" Grid.Column="1" Grid.Row="1"/>
+        <TextBox x:Name="number" Style="{DynamicResource textBox}" Grid.Column="1" Grid.Row="2"/>
+        <TextBox x:Name="color" Style="{DynamicResource textBox}" Grid.Column="1" Grid.Row="3"/>
+        <ComboBox x:Name="owner" Height="25" Width="150" FontSize="15" Grid.Column="1" Grid.Row="4" />
+
+        <StackPanel  Grid.Row="7" Grid.ColumnSpan="3" Orientation="Horizontal" >
+            <Button x:Name="add"  Margin="30 0 0 0" Content="Добавить"  Style="{DynamicResource Button}" Click="add_Click" />
+            <Button x:Name="cancel" Margin="50 0 0 0" Content="Отмена" Style="{DynamicResource Button}" IsCancel="True"/>
+        </StackPanel>
+
+        <Button Name="addModel" Height="30" Width="70" Grid.Column="2" Click="addModel_Click" Content="Добавить"/>
+
+        <Button Name="addOwner" Height="30" Width="70" Grid.Column="2" Grid.Row="4" Content="Добавить" Click="addOwner_Click" />
+
+    </Grid>
+</Window>

@@ -39,6 +39,9 @@ namespace Maintenance_RolicGoronok
             // Создаем и заполняем базу и таблицы
             CreateAndInsertTable createInsertTable = new CreateAndInsertTable();
             createInsertTable.StartConnection();
+
+            editClient.Click += (s, en) => new EditClient().ShowDialog();
+            newEmp.Click += (s, en) => new AddEmployee().ShowDialog();
         }//MainWindow_Loaded
 
         // При нажатии на кнопку закрыть вкладку
@@ -91,8 +94,10 @@ namespace Maintenance_RolicGoronok
                 case "Рабочий": frame.NavigationService.Navigate(new Uri("Pages/FourthQuery.xaml", UriKind.Relative)); break;
                 case "Неисправности": frame.NavigationService.Navigate(new Uri("Pages/FifthPage.xaml", UriKind.Relative)); break;
                 case "Распространенная": frame.NavigationService.Navigate(new Uri("Pages/SixthPage.xaml", UriKind.Relative)); break;
+                case "Заявки": frame.NavigationService.Navigate(new Uri("AllBid.xaml", UriKind.Relative)); break;
             }
             
+
             tabDynamic.DataContext = null;
             tabItem.Content = frame;                         // установка содержимого вкладки
             count = _tabItems.Count;

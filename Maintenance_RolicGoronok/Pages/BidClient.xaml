@@ -112,12 +112,12 @@
 
         <StackPanel Orientation="Vertical" Grid.Column="2">
 
-        <StackPanel Orientation="Horizontal" >
+            <StackPanel Orientation="Horizontal" Margin="0 35 0 0"  >
             <Label Style="{DynamicResource LabelSecond}" Foreground="Wheat"  Content="Поставлен на ремонт " FontSize="18" />
             <DatePicker x:Name="dateFrom" Width="150" Height="25" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Margin="0 20 0 0" >
+        <StackPanel Orientation="Horizontal" Margin="0 15 0 0" >
                 <Label Style="{DynamicResource LabelSecond}" Foreground="Wheat" Content="Дата возврата " FontSize="18" />
                 <DatePicker x:Name="dateTo" Width="150" Height="25" Margin="57 0 0 0" />
         </StackPanel>
@@ -132,10 +132,10 @@
         </DataGrid>
 
 
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
-            <Button x:Name="add" Content="Добавить наряд" Width="180" Style="{DynamicResource Button}" Click="add_Click"/>
+        <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3">
+            <Button x:Name="add" Margin="30 0 0 0" Content="Добавить наряд" Width="180" Style="{DynamicResource Button}" Click="add_Click"/>
 
-            <Button x:Name="addBids" Content="Добавить заявку" Width="180" Style="{DynamicResource Button}" Click="addBids_Click"/>
+            <Button x:Name="addBids" Margin="900 0 0 0" Content="Добавить заявку" Width="180" Style="{DynamicResource Button}" Click="addBids_Click"/>
 
         </StackPanel>
     </Grid>
